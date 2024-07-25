@@ -77,7 +77,8 @@ Once you have the sources, the next step is to compile and run the program.
 ### macOS and Linux
 
 For these UNIX-like environments, a Makefile is included to assist with
-compilation. To compile, simply enter the directory and run the `make` utility:
+compilation. To compile, simply enter the source directory and run the `make`
+utility:
 
 ```sh
 cd todos
