@@ -4,6 +4,7 @@
 
 #include "console/console.h"
 #include "input_error/input_error.h"
+#include "operation/operation.h"
 #include "todo/todo.h"
 
 int main()
@@ -46,10 +47,26 @@ int main()
         console.output_error(err.describe());
       }
       break;
+    case Command::remove:
+      try
+      {
+        unsigned int todo_num = console.get_todo_to_modify(Operation::remove);
+        if (todo_num < 0 || todo_num >= todos.size())
+        {
+          throw InputError("#");
+        }
+        todos.erase(todos.begin() + todo_num);
+        console.refresh();
+      }
+      catch (InputError err)
+      {
+        console.output_error(err.describe());
+      }
+      break;
     case Command::toggle:
       try
       {
-        unsigned int todo_num = console.get_todo_to_toggle();
+        unsigned int todo_num = console.get_todo_to_modify(Operation::toggle);
         if (todo_num < 0 || todo_num >= todos.size())
         {
           throw InputError("#");

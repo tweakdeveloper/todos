@@ -5,6 +5,7 @@
 #include <string>
 
 #include "../command/command.h"
+#include "../operation/operation.h"
 #include "../todo/todo.h"
 
 /// A simple class for I/O interactions, tailored to the needs of this
@@ -39,6 +40,11 @@ private:
   /// @returns "Complete" if passed `true`, and "Not Yet Complete" if passed
   /// `false`.
   std::string bool_to_completion_status_string(bool completed);
+  /// Get a prompt for a given Operation variant.
+  /// @param operation The Operation the prompt is needed for.
+  /// @returns A character representing the desired Operation that can be used 
+  /// to display a user-facing prompt.
+  char prompt_for_operation(Operation operation);
 
 public:
   // CONSTRUCTOR AND DESTRUCTOR
@@ -55,11 +61,13 @@ public:
   /// @throws InputError This method will throw an InputError if the user
   /// aborts the creation of the new Todo, perhaps by entering invalid data.
   Todo get_new_todo();
-  /// Prompts the user to select which Todo they want to toggle completion for.
-  /// @returns The index of the Todo that should be toggled.
+  /// Prompts the user to select which Todo they want to modify.
+  /// @param operation What the user wants to due to the Todo. The value of
+  /// this will affect the prompt shown to the user.
+  /// @returns The index of the Todo that should be modified.
   /// @throws InputError This method will throw an InputError if the user
   /// doesn't enter a valid response.
-  unsigned int get_todo_to_toggle();
+  unsigned int get_todo_to_modify(Operation operation);
   /// Waits for the user to input what they want to do.
   /// @returns A Command variant reflecting the user's choice.
   Command get_user_desire();

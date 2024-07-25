@@ -5,6 +5,7 @@
 
 #include "../command/command.h"
 #include "../input_error/input_error.h"
+#include "../operation/operation.h"
 #include "../todo/todo.h"
 
 #include "console.h"
@@ -90,12 +91,13 @@ Todo Console::get_new_todo()
   }
 }
 
-unsigned int Console::get_todo_to_toggle()
+unsigned int Console::get_todo_to_modify(Operation operation)
 {
   // Escape codes to set a green foreground (32m) and reset font to default
   // (0m).
   std::cout << "\x1b[32m"
-            << "/#?"
+            << prompt_for_operation(operation)
+            << "#?"
             << PROMPT
             << "\x1b[0m"
             << " "
@@ -113,7 +115,9 @@ unsigned int Console::get_todo_to_toggle()
   try
   {
     unsigned int todo_index = std::stoi(todo_input);
-    return todo_index;
+    // We subtract one here to allow the user to work as if the index values
+    // begin with 1, which is not the case in C++.
+    return todo_index - 1;
   }
   catch (std::out_of_range err)
   {
@@ -161,6 +165,8 @@ Command Console::get_user_desire()
     return Command::quit;
   case '+':
     return Command::create;
+  case '-':
+    return Command::remove;
   case '/':
     return Command::toggle;
   default:
@@ -212,6 +218,11 @@ void Console::output_help()
             << " Toggle completion"
             << " \x7c "
             << "\x1b[1m"
+            << "-"
+            << "\x1b[0m"
+            << " Remove"
+            << " \x7c "
+            << "\x1b[1m"
             << "q"
             << "\x1b[0m"
             << " Quit\n"
@@ -232,6 +243,17 @@ void Console::output_todo(Todo todo)
   // We've output a line so we need to increment our number of lines to be
   // discarded.
   lines_to_discard++;
+}
+
+char Console::prompt_for_operation(Operation operation)
+{
+  switch (operation)
+  {
+  case Operation::remove:
+    return '-';
+  case Operation::toggle:
+    return '/';
+  }
 }
 
 void Console::refresh()
