@@ -11,8 +11,11 @@ endif
 all: $(SRCS)
 	$(CXX) -Wall -Wextra -std=c++11 -o todos $(SRCS)
 
+docs:
+	doxygen
+
 run: all
 	./todos
 
 clean:
-	rm todos
+	-rm -r docs/ todos

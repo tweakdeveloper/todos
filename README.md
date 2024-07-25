@@ -44,21 +44,38 @@ This will also install the `git` and `make` utilities, allowing you to use Git
 for getting the source code, and the Makefile in this repository for
 compilation.
 
+Optionally, if you'll be working with the source code, a simple Doxyfile has
+been included to generate documentation. The simplest way I'm aware of to get
+up and running with this is to install [Homebrew](https://brew.sh) on your Mac,
+and install Doxygen with it:
+
+```sh
+brew install doxygen
+```
+
 ### Linux
 
 The usual C++ toolchain on Linux is the [GCC toolchain](https://gcc.gnu.org).
 The method of installation will vary depending on which package manager your
 distribution uses. In general, you'll need to install the package that provides
-the `g++` command. If you'll be using Git for fetching the source code, you'll
-need to install the package that provides the `git` command too. Finally, if
-you'd like to use the Makefile included in this repository to build the
-executable, you'll also need to install the package that provides the `make`
-command, if it's not already installed.
+the `g++` command.
 
-A sample command for the latest Ubuntu LTS release could look like this:
+If you'll be using Git for fetching the source code, you'll need to install the
+package that provides the `git` command too.
+
+Generating documentation from comments in the source is supported, but requires
+the `doxygen` command to be available, so if you're wanting to do this, you'll
+need to install the package that provides that command.
+
+Finally, if you'd like to use the Makefile included in this repository to build
+the executable, you'll also need to install the package that provides the
+`make` command, if it's not already installed.
+
+A sample command to install the full development toolchain, including the
+optional components, for the latest Ubuntu LTS release could look like this:
 
 ```sh
-sudo apt-get install g++ git make
+sudo apt-get install doxygen g++ git make
 ```
 
 ## Getting the source
@@ -70,7 +87,41 @@ the `git` command line tool:
 
 ```sh
 git clone https://github.com/tweakdeveloper/todos.git todos
+cd todos
 ```
+
+## Generating source documentation
+
+Documentation comments are included throughout the source code. These are
+[Doxygen](https://doxygen.nl)-style comments.
+
+### Windows
+
+The documentation comments are automatically picked up by the Microsoft's
+IntelliSense extensions in Visual Studio products, including Visual Studio
+Code. Documentation can be viewed by hovering over the symbol in the editor.
+
+Theoretically, a Windows version of Doxygen is available from the official
+[Doxygen downloads page](https://doxygen.nl/download.html) that can be run to
+generate standalone documentation, but I have not tested it and therefore
+cannot vouch for its ability. Feel free to
+[open an issue](https://github.com/tweakdeveloper/todos/issues/new) if you run
+into any troubles with this and I'll take a look at it when I have time.
+
+### macOS and Linux
+
+To create standalone HTML documentation of the sources, a `docs` target is
+available in the included Makefile:
+
+```sh
+make docs
+```
+
+Note that this assumes that the `doxygen` command is available in your `$PATH`.
+
+The `make` utility will run Doxygen for you, producing web page documentation
+in the `docs/html` subdirectory. This can be viewed by opening
+`docs/html/index.html` in your preferred web browser.
 
 ## Building
 
@@ -83,7 +134,6 @@ compilation. To compile, simply enter the source directory and run the `make`
 utility:
 
 ```sh
-cd todos
 make
 ```
 
