@@ -2,10 +2,17 @@
 
 #include <iostream>
 
+#include "todo/todo.h"
+
 using namespace std;
 
 int main()
 {
-  cout << "howdy!" << endl;
+  cout << boolalpha;
+  Todo sample_todo("say hi!");
+  cout << "Priority\tTitle\tCompleted\n"
+       << sample_todo.get_priority() << "\t"
+       << sample_todo.get_title() << "\t"
+       << sample_todo.has_been_completed() << endl;
   return 0;
 }

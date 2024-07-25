@@ -11,7 +11,9 @@ Nolan Clark
 
 This project was built using [clang++](https://clang.llvm.org), as I use macOS
 for development and this is the default C++ compiler included with Apple's
-toolchain, but any C++ compiler that supports the C++11 standard should work.
+toolchain, but any C++ compiler that supports the C++11 standard and the
+`#pragma once` statement ([most do](https://en.wikipedia.org/wiki/Pragma_once))
+should work.
 
 ### Windows
 
