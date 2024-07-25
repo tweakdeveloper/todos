@@ -49,7 +49,7 @@ int main()
     case Command::toggle:
       try
       {
-        int todo_num = console.get_todo_to_toggle();
+        unsigned int todo_num = console.get_todo_to_toggle();
         if (todo_num < 0 || todo_num >= todos.size())
         {
           throw InputError("#");

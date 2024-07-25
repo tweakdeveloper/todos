@@ -59,7 +59,7 @@ public:
   /// @returns The index of the Todo that should be toggled.
   /// @throws InputError This method will throw an InputError if the user
   /// doesn't enter a valid response.
-  int get_todo_to_toggle();
+  unsigned int get_todo_to_toggle();
   /// Waits for the user to input what they want to do.
   /// @returns A Command variant reflecting the user's choice.
   Command get_user_desire();

@@ -90,7 +90,7 @@ Todo Console::get_new_todo()
   }
 }
 
-int Console::get_todo_to_toggle()
+unsigned int Console::get_todo_to_toggle()
 {
   // Escape codes to set a green foreground (32m) and reset font to default
   // (0m).
@@ -112,7 +112,7 @@ int Console::get_todo_to_toggle()
   }
   try
   {
-    int todo_index = std::stoi(todo_input);
+    unsigned int todo_index = std::stoi(todo_input);
     return todo_index;
   }
   catch (std::out_of_range err)
