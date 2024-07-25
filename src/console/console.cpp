@@ -236,9 +236,13 @@ void Console::output_help()
 
 void Console::output_todo(Todo todo)
 {
+  // Escape code to erase the remainder of the line (K). This fixes a bug where
+  // toggling a Todo would leave the rest of the line intact, causing strange
+  // leftover characters in the terminal.
   std::cout << todo.get_title() << " - "
             << todo.get_priority() << " - "
             << bool_to_completion_status_string(todo.has_been_completed())
+            << "\x1b[K"
             << std::endl;
   // We've output a line so we need to increment our number of lines to be
   // discarded.
