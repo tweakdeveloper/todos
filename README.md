@@ -7,6 +7,11 @@ College's summer 2024 session.
 
 Nolan Clark
 
+## Features
+
+- Intuitive prompt-based interface
+- Color-coded output
+
 ## Toolchain
 
 This project was built using [clang++](https://clang.llvm.org), as I use macOS
