@@ -10,7 +10,14 @@ using namespace std;
 int main()
 {
   Console console;
-  Todo sample_todo("say hi!");
-  console.output_todo(sample_todo);
+  console.output_help();
+  while (true)
+  {
+    Command user_desire = console.get_user_desire();
+    if (user_desire == Command::quit)
+    {
+      break;
+    }
+  }
   return 0;
 }
