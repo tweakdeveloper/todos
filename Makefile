@@ -1,4 +1,4 @@
-SRCS := src/main.cpp src/todo/todo.cpp
+SRCS := src/main.cpp src/todo/todo.cpp src/console/console.cpp
 
 HOST := $(shell uname -s)
 
