@@ -137,4 +137,16 @@ utility:
 make
 ```
 
-You'll now have a binary, `todos`, in the source directory.
+You'll now have a binary, `todos`, in the source directory that can be executed
+as follows:
+
+```sh
+./todos
+```
+
+Alternatively, if you just want to compile and run the program in one fell
+swoop, you can use the `run` target provided in the Makefile:
+
+```sh
+make run
+```
