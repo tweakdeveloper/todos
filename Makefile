@@ -1,4 +1,5 @@
 SRCS := src/main.cpp src/todo/todo.cpp src/console/console.cpp
+SRCS += src/input_error/input_error.cpp
 
 HOST := $(shell uname -s)
 

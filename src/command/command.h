@@ -10,6 +10,9 @@ enum class Command
   create,
   /// This variant represents that the user wants to quit the program.
   quit,
+  /// This variant represents that the user would like to toggle the completion
+  /// status of a Todo.
+  toggle,
   /// This variant represents that the user didn't choose from one of the valid
   /// options.
   unknown,

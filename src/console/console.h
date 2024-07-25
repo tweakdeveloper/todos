@@ -16,11 +16,20 @@ class Console
 private:
   // CONSTANTS
 
+  // We use a preprocessor directive here to tell the user which key on the
+  // keyboard to press to confirm because Apple likes to be different and their
+  // "Return" key is the same as everyone else's "Enter" key.
+#ifdef __APPLE__
+  const char *PLATFORM_ENTER = "Return";
+#else
+  const char *PLATFORM_ENTER = "Enter";
+#endif
   const char *PROMPT = "\xe2\x96\xb6";
 
   // STATE
 
   bool good_input = true;
+  int lines_to_discard = 0;
 
   // INSTANCE METHODS
 
@@ -41,13 +50,34 @@ public:
 
   // INSTANCE METHODS
 
+  /// Prompts the user to input information for a new Todo.
+  /// @returns A Todo based on the user's specifications.
+  /// @throws InputError This method will throw an InputError if the user
+  /// aborts the creation of the new Todo, perhaps by entering invalid data.
+  Todo get_new_todo();
+  /// Prompts the user to select which Todo they want to toggle completion for.
+  /// @returns The index of the Todo that should be toggled.
+  /// @throws InputError This method will throw an InputError if the user
+  /// doesn't enter a valid response.
+  int get_todo_to_toggle();
   /// Waits for the user to input what they want to do.
   /// @returns A Command variant reflecting the user's choice.
   Command get_user_desire();
+  /// Is the screen a blank slate for us?
+  /// @returns Whether or not the screen has been written to since the last
+  /// refresh.
+  bool is_blank();
+  /// Prints a blank line to the terminal.
+  void output_blank_line();
+  /// Prints out an error message to the terminal.
+  /// @param err The error to be shown to the user.
+  void output_error(std::string err);
   /// Prints a helpful message letting the user know how to interact with the
   /// program.
   void output_help();
   /// Prints a formatted Todo to `stdout`.
   /// @param todo The Todo to output.
   void output_todo(Todo todo);
+  /// Erases everything but the welcome and the help options
+  void refresh();
 };

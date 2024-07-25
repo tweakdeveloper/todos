@@ -43,4 +43,7 @@ public:
   /// Sets the title of the Todo.
   /// @param title The title of the Todo.
   void set_title(std::string title);
+  /// Sets the completion status of the Todo to the opposite of its current
+  /// status.
+  void toggle_completion();
 };

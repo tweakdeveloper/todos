@@ -51,3 +51,8 @@ void Todo::set_title(std::string title)
 {
   this->title = title;
 }
+
+void Todo::toggle_completion()
+{
+  completed = !completed;
+}
