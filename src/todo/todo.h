@@ -4,6 +4,7 @@
 
 #include <string>
 
+/// A simple container class representing a task to be completed.
 class Todo
 {
 private:

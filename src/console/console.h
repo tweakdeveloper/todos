@@ -6,6 +6,8 @@
 
 #include "../todo/todo.h"
 
+/// A simple class for I/O interactions, tailored to the needs of this
+/// application.
 class Console
 {
 private:
