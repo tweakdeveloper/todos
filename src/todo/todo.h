@@ -21,6 +21,9 @@ public:
   Todo(std::string title);
   /// Constructor for the Todo class that sets the title and a priority.
   Todo(std::string title, int priority);
+  /// Constructor for the Todo class that sets the title, priority, and
+  /// completion status.
+  Todo(std::string title, int priority, bool completed);
 
   // OPERATORS
 

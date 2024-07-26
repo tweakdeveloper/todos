@@ -13,6 +13,9 @@ int main()
 {
   // Create a container for our Todo items
   std::vector<Todo> todos;
+  // Try to read tasks from save file
+  Save::attempt_load(&todos);
+  std::sort(todos.begin(), todos.end());
   // Start up our I/O
   Console console;
   console.output_help();

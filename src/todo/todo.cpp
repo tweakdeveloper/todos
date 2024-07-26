@@ -20,6 +20,12 @@ Todo::Todo(std::string title, int priority) : completed(false),
 {
 }
 
+Todo::Todo(std::string title, int priority, bool completed) : completed(completed),
+                                                              priority(priority),
+                                                              title(title)
+{
+}
+
 // OPERATORS
 
 bool operator<(const Todo &lhs, const Todo &rhs)
