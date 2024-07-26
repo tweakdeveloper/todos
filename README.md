@@ -14,6 +14,11 @@ Nolan Clark
 - Automatic sorting of tasks based on priority and completion status
 - Persistence of tasks in a text file
 
+## Needs Work
+
+- Bug squashing
+- Ability to set due dates for tasks
+
 ## Toolchain
 
 This project was built using [clang++](https://clang.llvm.org), as I use macOS
