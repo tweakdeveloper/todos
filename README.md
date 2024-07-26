@@ -18,6 +18,17 @@ Nolan Clark
 
 - Bug squashing
 - Ability to set due dates for tasks
+- Better Windows support
+  - Improved documentation
+  - Automated build tool
+  - Testing
+
+### Small note on Windows support
+
+I do not currently have a machine with Windows installed, nor do I own a copy
+of Windows to install in a VM. I will work on this, but my time is limited with
+my work scheduled (I'm a full-time employee at KCI in addition to being a
+student), so it may take some time.
 
 ## Toolchain
 
