@@ -1,7 +1,9 @@
 // CS200 - Final Project - Nolan Clark - 25JUL24
 
+#include <chrono>
 #include <iostream>
 #include <string>
+#include <thread>
 
 #include "../command/command.h"
 #include "../input_error/input_error.h"
@@ -157,6 +159,9 @@ Command Console::get_user_desire()
     return Command::remove;
   case '/':
     return Command::toggle;
+  case 'W':
+  case 'w':
+    return Command::write;
   default:
     good_input = false;
     // Escape code to scroll down (T). This essentially erases our last (bad)
@@ -211,6 +216,11 @@ void Console::output_help()
             << " Remove"
             << " \x7c "
             << "\x1b[1m"
+            << "w"
+            << "\x1b[0m"
+            << " Save"
+            << " \x7c "
+            << "\x1b[1m"
             << "q"
             << "\x1b[0m"
             << " Quit\n"
@@ -250,6 +260,30 @@ void Console::output_todo(Todo todo, int todo_display_num)
   // We've output a line so we need to increment our number of lines to be
   // discarded.
   lines_to_discard++;
+}
+
+void Console::output_write_status(bool was_successful)
+{
+  // Escape code to set bold font.
+  std::cout << "Save was " << "\x1b[1m";
+  if (was_successful)
+  {
+    // Escape code to set green foreground (32m).
+    std::cout << "\x1b[32m" << "SUCCESSFUL";
+  }
+  else
+  {
+    // Escape code to set red foreground (31m).
+    std::cout << "\x1b[31m" << "UNSUCCESSFUL";
+  }
+  // Escape code to reset font to default values (0m).
+  std::cout << "\x1b[0m" << std::flush;
+  // We've output a line so we need to increment our number of lines to be
+  // discarded.
+  lines_to_discard++;
+  // Pause the thread to give the user time to read the response before
+  // continuing.
+  std::this_thread::sleep_for(std::chrono::seconds(1));
 }
 
 char Console::prompt_for_operation(Operation operation)

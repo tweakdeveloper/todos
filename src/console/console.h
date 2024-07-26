@@ -82,6 +82,12 @@ public:
   /// @param todo_display_num An index that the user can use to reference the
   /// Todo when modifying it.
   void output_todo(Todo todo, int todo_display_num);
+  /// Display whether a save operation was successful to the user.
+  /// @details This function pauses for a moment to allow the user to read the
+  /// status before returning. Therefore, the screen can be cleared immediately
+  /// after.
+  /// @param was_successful Whether or not the write was successful.
+  void output_write_status(bool was_successful);
   /// Erases everything but the welcome and the help options
   void refresh();
 };

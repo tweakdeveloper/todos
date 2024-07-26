@@ -18,4 +18,6 @@ enum class Command
   /// This variant represents that the user didn't choose from one of the valid
   /// options.
   unknown,
+  /// This variant represents that the user wants to save the Todos.
+  write,
 };

@@ -12,6 +12,7 @@ Nolan Clark
 - Intuitive prompt-based interface
 - Color-coded output
 - Automatic sorting of tasks based on priority and completion status
+- Persistence of tasks in a text file
 
 ## Toolchain
 

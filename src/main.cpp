@@ -6,6 +6,7 @@
 #include "console/console.h"
 #include "input_error/input_error.h"
 #include "operation/operation.h"
+#include "save/save.h"
 #include "todo/todo.h"
 
 int main()
@@ -22,13 +23,13 @@ int main()
     if (console.is_blank())
     {
       int todo_display_num = 1;
-      std::for_each(todos.begin(),
-                    todos.end(),
-                    [&console, &todo_display_num](Todo &todo)
-                    {
-                      console.output_todo(todo, todo_display_num);
-                      todo_display_num++;
-                    });
+      auto output_todo = [&console, &todo_display_num](Todo &todo)
+      {
+        console.output_todo(todo, todo_display_num);
+        todo_display_num++;
+      };
+      std::for_each(todos.begin(), todos.end(), output_todo);
+
       if (todos.size() > 0)
       {
         console.output_blank_line();
@@ -84,6 +85,14 @@ int main()
         console.output_error(err.describe());
       }
       break;
+      // Braces are required here since we're declaring a variable in this case.
+    case Command::write:
+    {
+      bool save_successful = Save::write(todos);
+      console.output_write_status(save_successful);
+      console.refresh();
+    }
+    break;
     case Command::unknown:
       break;
     }

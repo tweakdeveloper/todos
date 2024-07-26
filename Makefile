@@ -1,5 +1,5 @@
 SRCS := src/main.cpp src/todo/todo.cpp src/console/console.cpp
-SRCS += src/input_error/input_error.cpp
+SRCS += src/input_error/input_error.cpp src/save/save.cpp
 
 HOST := $(shell uname -s)
 
@@ -19,4 +19,4 @@ run: all
 	./todos
 
 clean:
-	-rm -r docs/ todos
+	-rm -r docs/ todos saved_todos.txt
