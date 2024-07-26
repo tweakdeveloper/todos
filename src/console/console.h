@@ -34,15 +34,9 @@ private:
 
   // INSTANCE METHODS
 
-  /// Returns an std::string representing the completion status of a boolean
-  /// value.
-  /// @param completed Whether or not the task has been marked completed.
-  /// @returns "Complete" if passed `true`, and "Not Yet Complete" if passed
-  /// `false`.
-  std::string bool_to_completion_status_string(bool completed);
   /// Get a prompt for a given Operation variant.
   /// @param operation The Operation the prompt is needed for.
-  /// @returns A character representing the desired Operation that can be used 
+  /// @returns A character representing the desired Operation that can be used
   /// to display a user-facing prompt.
   char prompt_for_operation(Operation operation);
 

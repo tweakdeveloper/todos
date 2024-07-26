@@ -25,18 +25,6 @@ Console::Console()
 
 // INSTANCE METHODS
 
-std::string Console::bool_to_completion_status_string(bool completed)
-{
-  if (completed)
-  {
-    return "Complete";
-  }
-  else
-  {
-    return "Not Yet Complete";
-  }
-}
-
 Todo Console::get_new_todo()
 {
   // Escape codes to set a green foreground (32m) and reset to default (0m).
@@ -236,14 +224,28 @@ void Console::output_help()
 
 void Console::output_todo(Todo todo)
 {
+  // Output a green checkmark if task is complete and a spacer for alignment if
+  // not.
+  if (todo.has_been_completed())
+  {
+    // Escape code to set a green foreground (32m) and reset to default font
+    // (0m).
+    std::cout << "\x1b[32m"
+              << "\u2714"
+              << "\x1b[0m"
+              << " ";
+  }
+  else
+  {
+    std::cout << "  ";
+  }
+  std::cout << todo.get_priority() << " - " << todo.get_title();
   // Escape code to erase the remainder of the line (K). This fixes a bug where
   // toggling a Todo would leave the rest of the line intact, causing strange
   // leftover characters in the terminal.
-  std::cout << todo.get_title() << " - "
-            << todo.get_priority() << " - "
-            << bool_to_completion_status_string(todo.has_been_completed())
-            << "\x1b[K"
-            << std::endl;
+  std::cout
+      << "\x1b[K"
+      << std::endl;
   // We've output a line so we need to increment our number of lines to be
   // discarded.
   lines_to_discard++;
