@@ -20,6 +20,26 @@ Todo::Todo(std::string title, int priority) : completed(false),
 {
 }
 
+// OPERATORS
+
+bool operator<(const Todo &lhs, const Todo &rhs)
+{
+  // First tiebreaker is priority. For different priorities, the lower priority
+  // should go first (lower priority numbers have higher importance).
+  if (lhs.priority != rhs.priority)
+  {
+    return lhs.priority < rhs.priority;
+  }
+  // Next tiebreaker is completion status. Completed tasks go after incomplete
+  // tasks.
+  if (lhs.completed != rhs.completed)
+  {
+    return !lhs.completed;
+  }
+  // If all tiebreakers are equal, return false to maintain ordering.
+  return false;
+}
+
 // GETTERS AND SETTERS
 
 int Todo::get_priority()

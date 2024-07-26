@@ -1,5 +1,6 @@
 // CS200 - Final Project - Nolan Clark - 25JUL24
 
+#include <algorithm>
 #include <vector>
 
 #include "console/console.h"
@@ -82,6 +83,7 @@ int main()
     case Command::unknown:
       break;
     }
+    std::sort(todos.begin(), todos.end());
   }
   return 0;
 }

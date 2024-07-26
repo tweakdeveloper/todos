@@ -22,6 +22,15 @@ public:
   /// Constructor for the Todo class that sets the title and a priority.
   Todo(std::string title, int priority);
 
+  // OPERATORS
+
+  /// Comparison operator. The implementation of this allows for sorting of the
+  /// container std::vector with std::sort.
+  /// @details This function sorts Todos by several factors: first, priority;
+  /// second, completion status. If all are equal, the function returns false
+  /// to ensure that strict weak ordering is maintained.
+  friend bool operator<(const Todo &lhs, const Todo &rhs);
+
   // GETTERS AND SETTERS
 
   /// Get the priority of the Todo.
