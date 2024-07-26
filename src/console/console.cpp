@@ -222,8 +222,10 @@ void Console::output_help()
             << std::endl;
 }
 
-void Console::output_todo(Todo todo)
+void Console::output_todo(Todo todo, int todo_display_num)
 {
+  // Output the display number
+  std::cout << todo_display_num << ") ";
   // Output a green checkmark if task is complete and a spacer for alignment if
   // not.
   if (todo.has_been_completed())

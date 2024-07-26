@@ -21,10 +21,14 @@ int main()
   {
     if (console.is_blank())
     {
-      for (auto &&current_todo : todos)
-      {
-        console.output_todo(current_todo);
-      }
+      int todo_display_num = 1;
+      std::for_each(todos.begin(),
+                    todos.end(),
+                    [&console, &todo_display_num](Todo &todo)
+                    {
+                      console.output_todo(todo, todo_display_num);
+                      todo_display_num++;
+                    });
       if (todos.size() > 0)
       {
         console.output_blank_line();

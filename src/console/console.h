@@ -79,7 +79,9 @@ public:
   void output_help();
   /// Prints a formatted Todo to `stdout`.
   /// @param todo The Todo to output.
-  void output_todo(Todo todo);
+  /// @param todo_display_num An index that the user can use to reference the
+  /// Todo when modifying it.
+  void output_todo(Todo todo, int todo_display_num);
   /// Erases everything but the welcome and the help options
   void refresh();
 };
